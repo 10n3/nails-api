@@ -1,5 +1,9 @@
-import {Column, DataType, Model, Table} from "sequelize-typescript";
+import {BelongsToMany, Column, DataType, Model, Table} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
+import {UserRoles} from "../user-roles/user-roles.model";
+import {UserUserRoles} from "../user-roles/user-user-role.model";
+import {Company} from "../company/company.model";
+import {UserCompany} from "../company/user-company.model";
 
 interface UserCreationAttrs {
     email: string;
@@ -7,7 +11,7 @@ interface UserCreationAttrs {
 }
 
 
-@Table({ tableName: 'users' })
+@Table({ tableName: 'Users' })
 export class User extends Model<User, UserCreationAttrs> {
 
     @ApiProperty({ example: '1', description: 'Primary key (unique, autoincrement)' })
@@ -30,5 +34,9 @@ export class User extends Model<User, UserCreationAttrs> {
     @Column( { type: DataType.STRING, allowNull: true})
     banReason: string;
 
+    @BelongsToMany(() => UserRoles, () => UserUserRoles )
+    roles: UserRoles[];
 
+    @BelongsToMany( ()=> Company, () => UserCompany )
+    companies: Company[];
 }
