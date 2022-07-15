@@ -1,11 +1,17 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import {TypeOrmModule} from "@nestjs/typeorm";
 import { UsersModule } from './users/users.module';
 import {ConfigModule} from "@nestjs/config";
 import {User} from "./users/users.model";
 import {SequelizeModule} from "@nestjs/sequelize";
+import { CompanyModule } from './company/company.module';
+import {Company} from "./company/company.model";
+import { UserRolesModule } from './user-roles/user-roles.module';
+import {UserRoles} from "./user-roles/user-roles.model";
+import {UserUserRoles} from "./user-roles/user-user-role.model";
+import {UserCompany} from "./company/user-company.model";
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -19,11 +25,14 @@ import {SequelizeModule} from "@nestjs/sequelize";
       username: process.env.POSTGRES_USERNAME,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
-      models: [User],
+      models: [User, Company, UserRoles, UserUserRoles, UserCompany],
       synchronize: true,
       autoLoadModels: true,
     }),
     UsersModule,
+    CompanyModule,
+    UserRolesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
