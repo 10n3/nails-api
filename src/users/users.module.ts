@@ -15,6 +15,9 @@ import {CompanyModule} from "../company/company.module";
       CompanyModule,
   ],
   providers: [UsersService],
-  controllers: [UsersController]
+  controllers: [UsersController],
+    exports: [
+        UsersService,
+    ]
 })
 export class UsersModule {}

@@ -11,6 +11,7 @@ import { UserRolesModule } from './user-roles/user-roles.module';
 import {UserRoles} from "./user-roles/user-roles.model";
 import {UserUserRoles} from "./user-roles/user-user-role.model";
 import {UserCompany} from "./company/user-company.model";
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import {UserCompany} from "./company/user-company.model";
     UsersModule,
     CompanyModule,
     UserRolesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
