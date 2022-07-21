@@ -30,7 +30,7 @@ export class User extends Model<User, UserCreationAttrs> {
     @Column( { type: DataType.BOOLEAN, defaultValue: false})
     banned: boolean;
 
-    @ApiProperty({ example: 'For spam', description: 'Ban reason' })
+    @ApiProperty({ example: 'For spam', description: 'Ban reason', required: false })
     @Column( { type: DataType.STRING, allowNull: true})
     banReason: string;
 

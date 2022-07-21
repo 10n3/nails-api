@@ -23,23 +23,23 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
     @Column( { type: DataType.STRING, unique: true, allowNull: false})
     tel_number: string;
 
-    @ApiProperty({ example: 'example@gmail.com', description: 'Email address' })
+    @ApiProperty({ example: 'example@gmail.com', description: 'Email address', required: false })
     @Column( { type: DataType.STRING, unique: true, allowNull: true})
     email: string;
 
-    @ApiProperty({ example: 'Ukraine', description: 'Company country' })
+    @ApiProperty({ example: 'Ukraine', description: 'Company country', required: false })
     @Column( { type: DataType.STRING, allowNull: true})
     country: string;
 
-    @ApiProperty({ example: 'Mariupol', description: 'City' })
+    @ApiProperty({ example: 'Mariupol', description: 'City', required: false })
     @Column( { type: DataType.STRING, allowNull: true})
     city: string;
 
-    @ApiProperty({ example: 'Зелінського, 100', description: 'Company address' })
+    @ApiProperty({ example: 'Зелінського, 100', description: 'Company address', required: false })
     @Column( { type: DataType.STRING, allowNull: true})
     address: string;
 
-    @ApiProperty({ example: 'Our company is...', description: 'Company description' })
+    @ApiProperty({ example: 'Our company is...', description: 'Company description', required: false })
     @Column( { type: DataType.STRING, allowNull: true})
     description: string;
 
