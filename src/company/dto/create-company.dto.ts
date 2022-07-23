@@ -1,13 +1,12 @@
 import {ApiProperty} from "@nestjs/swagger";
-import {Column, DataType} from "sequelize-typescript";
 
 export class CreateCompanyDto {
 
     @ApiProperty({ example: 'Kaif beauty', description: 'Company name' })
-    readonly name: string;
+    name: string;
 
     @ApiProperty({ example: '+380666666666', description: 'Company/Owner telephone number' })
-    readonly tel_number: string;
+    tel_number: string;
 
     @ApiProperty({ example: 'example@gmail.com', description: 'Email address' })
     email: string;
