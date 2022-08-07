@@ -20,7 +20,7 @@ export class AuthService {
     async signup(userDto: CreateUserDto){
         const candidate = this.userService.getUserByEmail(userDto.email);
 
-        if(candidate) {
+        if(!candidate) {
             throw new HttpException('User with this email is already exist', HttpStatus.BAD_REQUEST);
         }
 
