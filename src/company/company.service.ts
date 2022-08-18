@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import {InjectModel} from "@nestjs/sequelize";
-import {User} from "../users/users.model";
 import {Company} from "./company.model";
 import {CreateCompanyDto} from "./dto/create-company.dto";
 
@@ -20,5 +19,4 @@ export class CompanyService {
     async getCompanyByName(name: string){
         return await this.companyRepository.findOne( { where: { name } });
     }
-
 }

@@ -1,7 +1,8 @@
-import {BelongsToMany, Column, DataType, Model, Table} from "sequelize-typescript";
+import {BelongsToMany, Column, DataType, HasMany, Model, Table} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
 import {User} from "../users/users.model";
 import {UserCompany} from "./user-company.model";
+import {Client} from "../client/client.model";
 
 interface CompanyCreationAttrs {
     name: string;
@@ -45,4 +46,7 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
 
     @BelongsToMany(() => User, () => UserCompany )
     users: User[];
+
+    @HasMany( () => Client )
+    clients: Client[];
 }

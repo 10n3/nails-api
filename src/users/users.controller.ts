@@ -31,7 +31,7 @@ export class UsersController {
         return this.usersService.getAllUsers();
     }
 
-    @ApiOperation({ summary: 'Get usr by email' })
+    @ApiOperation({ summary: 'Get user by email' })
     @ApiResponse({ status: 200, type: User })
     @Get('/:email')
     async getUserByEmail(@Param('email') email: string) {

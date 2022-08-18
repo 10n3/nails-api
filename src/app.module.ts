@@ -13,6 +13,7 @@ import {UserUserRoles} from "./user-roles/user-user-role.model";
 import {UserCompany} from "./company/user-company.model";
 import { AuthModule } from './auth/auth.module';
 import { ClientModule } from './client/client.module';
+import {Client} from "./client/client.model";
 
 @Module({
   imports: [
@@ -26,7 +27,7 @@ import { ClientModule } from './client/client.module';
       username: process.env.POSTGRES_USERNAME,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
-      models: [User, Company, UserRoles, UserUserRoles, UserCompany],
+      models: [User, Company, UserRoles, UserUserRoles, UserCompany, Client],
       synchronize: true,
       autoLoadModels: true,
     }),
