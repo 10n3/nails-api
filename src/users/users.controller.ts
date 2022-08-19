@@ -24,14 +24,14 @@ export class UsersController {
 
     @ApiOperation({ summary: 'Get all users' })
     @ApiResponse({ status: 200, type: [User] })
-    // @Roles("Admin")
-    // @UseGuards(UserRolesGuard)
+    @Roles("Admin")
+    @UseGuards(UserRolesGuard)
     @Get()
     async getAllUsers() {
         return this.usersService.getAllUsers();
     }
 
-    @ApiOperation({ summary: 'Get usr by email' })
+    @ApiOperation({ summary: 'Get user by email' })
     @ApiResponse({ status: 200, type: User })
     @Get('/:email')
     async getUserByEmail(@Param('email') email: string) {
@@ -40,7 +40,7 @@ export class UsersController {
 
     @ApiOperation({ summary: 'Add user a role' })
     @ApiResponse({ status: 200, type: User })
-    @Put()
+    @Put('change-role')
     async setRole(@Body() dto: SetRoleDto) {
         return this.usersService.setRole(dto);
     }

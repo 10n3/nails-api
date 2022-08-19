@@ -1,5 +1,6 @@
-import {Column, DataType, Model, Table} from "sequelize-typescript";
+import {BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
+import {Company} from "../company/company.model";
 
 @Table({ tableName: 'Client' })
 export class Client extends Model<Client> {
@@ -35,4 +36,12 @@ export class Client extends Model<Client> {
     @ApiProperty({ example: 'Client prefers...', description: 'Comment to client desires', required: false })
     @Column( { type: DataType.STRING, allowNull: true})
     comment: string;
+
+    @ApiProperty({ example: '15', description: 'Id of company that client is belong to', required: false })
+    @ForeignKey( () => Company )
+    @Column( { type: DataType.NUMBER, allowNull: true})
+    companyid: number;
+
+    @BelongsTo( () => Company)
+    company: Company;
 }

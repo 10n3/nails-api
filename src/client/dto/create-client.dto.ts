@@ -23,4 +23,5 @@ export class CreateClientDto {
     @ApiProperty({ example: 'Client prefers...', description: 'Comment to client desires' })
     readonly comment: string;
 
+
 }
