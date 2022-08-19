@@ -11,5 +11,13 @@ export class ServiceCategoryService {
         return await this.serviceCategoryRepository.create(dto);
     }
 
+    async getAllServiceCetegories() {
+            const serviceCategories = await this.serviceCategoryRepository.findAll({include: {all: true}});
+            return serviceCategories;
+    }
 
+    async getServiceCategoryByName(categoryName: string) {
+        const searchedCategory = await this.serviceCategoryRepository.findOne({ where: { name: categoryName } });
+        return searchedCategory;
+    }
 }

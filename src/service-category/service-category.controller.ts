@@ -1,4 +1,4 @@
-import {Body, Controller, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {ClientService} from "../client/client.service";
 import {ServiceCategoryService} from "./service-category.service";
@@ -20,6 +20,19 @@ export class ServiceCategoryController {
         return this.serviceCategoryService.createServiceCategory(dto);
     }
 
+    @ApiOperation({ summary: 'Get all service categories' })
+    @ApiResponse({ status: 200, type: [ServiceCategory] })
+    @Get()
+    async getAllServiceCategories() {
+        return this.serviceCategoryService.getAllServiceCetegories();
+    }
+
+    @ApiOperation({ summary: 'Get service category by name' })
+    @ApiResponse({ status: 200, type: [ServiceCategory] })
+    @Get('/:name')
+    async getServiceCategoryByName(@Param('name') name: string) {
+        return this.serviceCategoryService.getServiceCategoryByName(name);
+    }
 
 
 }
