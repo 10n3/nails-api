@@ -3,6 +3,7 @@ import {ApiProperty} from "@nestjs/swagger";
 import {User} from "../users/users.model";
 import {UserCompany} from "./user-company.model";
 import {Client} from "../client/client.model";
+import {ServiceCategory} from "../service-category/service-category.model";
 
 interface CompanyCreationAttrs {
     name: string;
@@ -49,4 +50,7 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
 
     @HasMany( () => Client )
     clients: Client[];
+
+    @HasMany( ()=> ServiceCategory )
+    servicecategories: ServiceCategory[];
 }
