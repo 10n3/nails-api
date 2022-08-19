@@ -10,6 +10,9 @@ import {Company} from "../company/company.model";
     controllers: [ServiceCategoryController],
     imports: [
         SequelizeModule.forFeature([ServiceCategory, Company]),
+    ],
+    exports: [
+        ServiceCategoryService,
     ]
 })
 export class ServiceCategoryModule {
