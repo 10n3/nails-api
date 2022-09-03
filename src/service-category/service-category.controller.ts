@@ -1,9 +1,6 @@
 import {Body, Controller, Get, Param, Post} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
-import {ClientService} from "../client/client.service";
 import {ServiceCategoryService} from "./service-category.service";
-import {Client} from "../client/client.model";
-import {CreateClientDto} from "../client/dto/create-client.dto";
 import {ServiceCategory} from "./service-category.model";
 import {CreateServiceCategoryDto} from "./dto/create-service-category.dto";
 

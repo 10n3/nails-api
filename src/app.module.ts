@@ -14,10 +14,11 @@ import {UserCompany} from "./company/user-company.model";
 import { AuthModule } from './auth/auth.module';
 import { ClientModule } from './client/client.module';
 import {Client} from "./client/client.model";
-import { ServiceCategoryService } from './service-category/service-category.service';
-import { ServiceCategoryController } from './service-category/service-category.controller';
 import { ServiceCategoryModule } from './service-category/service-category.module';
 import {ServiceCategory} from "./service-category/service-category.model";
+import { ServiceService } from './service/service.service';
+import { ServiceModule } from './service/service.module';
+import {Service} from "./service/service.model";
 
 @Module({
   imports: [
@@ -31,7 +32,16 @@ import {ServiceCategory} from "./service-category/service-category.model";
       username: process.env.POSTGRES_USERNAME,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DATABASE,
-      models: [User, Company, UserRoles, UserUserRoles, UserCompany, Client, ServiceCategory],
+      models: [
+          User,
+          Company,
+          UserRoles,
+          UserUserRoles,
+          UserCompany,
+          Client,
+          ServiceCategory,
+          Service
+      ],
       synchronize: true,
       autoLoadModels: true,
     }),
@@ -41,6 +51,7 @@ import {ServiceCategory} from "./service-category/service-category.model";
     AuthModule,
     ClientModule,
     ServiceCategoryModule,
+    ServiceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
