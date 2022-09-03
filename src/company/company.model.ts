@@ -4,6 +4,7 @@ import {User} from "../users/users.model";
 import {UserCompany} from "./user-company.model";
 import {Client} from "../client/client.model";
 import {ServiceCategory} from "../service-category/service-category.model";
+import {Service} from "../service/service.model";
 
 interface CompanyCreationAttrs {
     name: string;
@@ -53,4 +54,7 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
 
     @HasMany( ()=> ServiceCategory )
     servicecategories: ServiceCategory[];
+
+    @HasMany( () => Service )
+    services: Service[];
 }
