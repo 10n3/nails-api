@@ -19,6 +19,10 @@ import {ServiceCategory} from "./service-category/service-category.model";
 import { ServiceService } from './service/service.service';
 import { ServiceModule } from './service/service.module';
 import {Service} from "./service/service.model";
+import { EmployeeCategoryController } from './employee-category/employee-category.controller';
+import { EmployeeCategoryService } from './employee-category/employee-category.service';
+import { EmployeeCategoryModule } from './employee-category/employee-category.module';
+import {EmployeeCategory} from "./employee-category/employee-category.model";
 
 @Module({
   imports: [
@@ -40,7 +44,8 @@ import {Service} from "./service/service.model";
           UserCompany,
           Client,
           ServiceCategory,
-          Service
+          Service,
+          EmployeeCategory,
       ],
       synchronize: true,
       autoLoadModels: true,
@@ -52,6 +57,7 @@ import {Service} from "./service/service.model";
     ClientModule,
     ServiceCategoryModule,
     ServiceModule,
+    EmployeeCategoryModule,
   ],
   controllers: [AppController],
   providers: [AppService],
