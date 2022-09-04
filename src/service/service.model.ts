@@ -36,4 +36,12 @@ export class Service extends Model<Service> {
     @BelongsTo( () => ServiceCategory )
     service_category: ServiceCategory;
 
+    @ApiProperty({ example: 'Kaif Beauty', description: 'Company that service belongs to', required: false })
+    @ForeignKey( () => Company )
+    @Column( { type: DataType.NUMBER, allowNull: true})
+    company_id: number;
+
+    @BelongsTo( () => Company )
+    company: Company;
+
 }

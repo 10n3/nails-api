@@ -13,14 +13,14 @@ export class ServiceCategoryController {
     @ApiOperation({ summary: 'Service category creation' })
     @ApiResponse({ status: 201, type: ServiceCategory })
     @Post()
-    async createClient(@Body() dto: CreateServiceCategoryDto) {
+    async createOne(@Body() dto: CreateServiceCategoryDto) {
         return this.serviceCategoryService.createServiceCategory(dto);
     }
 
     @ApiOperation({ summary: 'Get all service categories' })
     @ApiResponse({ status: 200, type: [ServiceCategory] })
     @Get()
-    async getAllServiceCategories() {
+    async getAll() {
         return this.serviceCategoryService.getAllServiceCetegories();
     }
 
