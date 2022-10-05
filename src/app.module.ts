@@ -16,13 +16,12 @@ import { ClientModule } from './client/client.module';
 import {Client} from "./client/client.model";
 import { ServiceCategoryModule } from './service-category/service-category.module';
 import {ServiceCategory} from "./service-category/service-category.model";
-import { ServiceService } from './service/service.service';
 import { ServiceModule } from './service/service.module';
 import {Service} from "./service/service.model";
-import { EmployeeCategoryController } from './employee-category/employee-category.controller';
-import { EmployeeCategoryService } from './employee-category/employee-category.service';
 import { EmployeeCategoryModule } from './employee-category/employee-category.module';
 import {EmployeeCategory} from "./employee-category/employee-category.model";
+import { EmployeesModule } from './employees/employees.module';
+import {Employees} from "./employees/employees.model";
 
 @Module({
   imports: [
@@ -46,6 +45,7 @@ import {EmployeeCategory} from "./employee-category/employee-category.model";
           ServiceCategory,
           Service,
           EmployeeCategory,
+          Employees
       ],
       synchronize: true,
       autoLoadModels: true,
@@ -58,6 +58,7 @@ import {EmployeeCategory} from "./employee-category/employee-category.model";
     ServiceCategoryModule,
     ServiceModule,
     EmployeeCategoryModule,
+    EmployeesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

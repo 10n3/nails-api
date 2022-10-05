@@ -2,6 +2,7 @@ import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-t
 import {ApiProperty} from "@nestjs/swagger";
 import {Company} from "../company/company.model";
 import {ServiceCategory} from "../service-category/service-category.model";
+import {Employees} from "../employees/employees.model";
 
 
 
@@ -43,5 +44,13 @@ export class Service extends Model<Service> {
 
     @BelongsTo( () => Company )
     company: Company;
+
+    @ApiProperty({ example: '23', description: 'Employee that service belongs to', required: false })
+    @ForeignKey( () => Employees )
+    @Column( { type: DataType.NUMBER, allowNull: true})
+    employees_id: number;
+
+    @BelongsTo( () => Employees )
+    employees: Employees;
 
 }

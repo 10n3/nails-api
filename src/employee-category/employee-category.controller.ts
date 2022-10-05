@@ -5,7 +5,7 @@ import {EmployeeCategory} from "./employee-category.model";
 import {CreateEmployeeCategoryDto} from "./dto/create-employee-category.dto";
 
 @ApiTags('Employee category')
-@Controller('employee-category')
+@Controller('employees-category')
 export class EmployeeCategoryController {
     constructor(private employeeCategoryService: EmployeeCategoryService) {}
 
@@ -16,7 +16,7 @@ export class EmployeeCategoryController {
         return this.employeeCategoryService.createOne(dto);
     }
 
-    @ApiOperation({ summary: 'Get all employee categories' })
+    @ApiOperation({ summary: 'Get all employees categories' })
     @ApiResponse({ status: 200, type: [EmployeeCategory] })
     @Get()
     async getAll() {
