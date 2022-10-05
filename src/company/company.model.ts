@@ -6,6 +6,7 @@ import {Client} from "../client/client.model";
 import {ServiceCategory} from "../service-category/service-category.model";
 import {Service} from "../service/service.model";
 import {EmployeeCategory} from "../employee-category/employee-category.model";
+import {Employees} from "../employees/employees.model";
 
 interface CompanyCreationAttrs {
     name: string;
@@ -61,5 +62,8 @@ export class Company extends Model<Company, CompanyCreationAttrs> {
 
     @HasMany( ()=> EmployeeCategory )
     employeecategories: EmployeeCategory[];
+
+    @HasMany( () => Employees )
+    employees: Employees[];
 
 }
