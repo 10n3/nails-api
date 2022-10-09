@@ -1,6 +1,7 @@
-import {BelongsTo, BelongsToMany, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
+import {BelongsTo, BelongsToMany, Column, DataType, ForeignKey, HasMany, Model, Table} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
 import {Company} from "../company/company.model";
+import {Records} from "../records/records.model";
 
 @Table({ tableName: 'Client' })
 export class Client extends Model<Client> {
@@ -44,4 +45,7 @@ export class Client extends Model<Client> {
 
     @BelongsTo( () => Company)
     company: Company;
+
+    @HasMany( () => Records )
+    records: Records[];
 }

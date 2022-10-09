@@ -22,6 +22,9 @@ import { EmployeeCategoryModule } from './employee-category/employee-category.mo
 import {EmployeeCategory} from "./employee-category/employee-category.model";
 import { EmployeesModule } from './employees/employees.module';
 import {Employees} from "./employees/employees.model";
+import { RecordsService } from './records/records.service';
+import { RecordsModule } from './records/records.module';
+import {Records} from "./records/records.model";
 
 @Module({
   imports: [
@@ -45,7 +48,8 @@ import {Employees} from "./employees/employees.model";
           ServiceCategory,
           Service,
           EmployeeCategory,
-          Employees
+          Employees,
+          Records
       ],
       synchronize: true,
       autoLoadModels: true,
@@ -59,6 +63,7 @@ import {Employees} from "./employees/employees.model";
     ServiceModule,
     EmployeeCategoryModule,
     EmployeesModule,
+    RecordsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

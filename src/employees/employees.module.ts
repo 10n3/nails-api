@@ -5,10 +5,11 @@ import {SequelizeModule} from "@nestjs/sequelize";
 import {Employees} from "./employees.model";
 import {EmployeeCategory} from "../employee-category/employee-category.model";
 import {Service} from "../service/service.model";
+import {Records} from "../records/records.model";
 
 @Module({
   imports: [
-    SequelizeModule.forFeature([Employees, EmployeeCategory, Service]),
+    SequelizeModule.forFeature([Employees, EmployeeCategory, Service, Records]),
 
   ],
 

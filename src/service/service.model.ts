@@ -1,8 +1,9 @@
-import {BelongsTo, Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
+import {BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
 import {Company} from "../company/company.model";
 import {ServiceCategory} from "../service-category/service-category.model";
 import {Employees} from "../employees/employees.model";
+import {Records} from "../records/records.model";
 
 
 
@@ -52,5 +53,8 @@ export class Service extends Model<Service> {
 
     @BelongsTo( () => Employees )
     employees: Employees;
+
+    @HasMany( () => Records )
+    records: Records[];
 
 }
