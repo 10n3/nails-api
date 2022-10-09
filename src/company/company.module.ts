@@ -11,16 +11,19 @@ import {ServiceCategoryService} from "../service-category/service-category.servi
 import {ServiceModule} from "../service/service.module";
 import {EmployeeCategory} from "../employee-category/employee-category.model";
 import {EmployeeCategoryModule} from "../employee-category/employee-category.module";
+import {Records} from "../records/records.model";
+import {RecordsModule} from "../records/records.module";
 
 @Module({
   providers: [CompanyService],
   controllers: [CompanyController],
   imports: [
-      SequelizeModule.forFeature([Company, Client, ServiceCategory, EmployeeCategory]),
+      SequelizeModule.forFeature([Company, Client, ServiceCategory, EmployeeCategory, Records]),
       ClientModule,
       ServiceCategoryModule,
       ServiceModule,
-      EmployeeCategoryModule
+      EmployeeCategoryModule,
+      RecordsModule
   ],
 
 })

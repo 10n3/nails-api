@@ -3,6 +3,7 @@ import {ApiProperty} from "@nestjs/swagger";
 import {Company} from "../company/company.model";
 import {EmployeeCategory} from "../employee-category/employee-category.model";
 import {Service} from "../service/service.model";
+import {Records} from "../records/records.model";
 
 @Table({ tableName: 'Employees' })
 export class Employees extends Model<Employees> {
@@ -57,4 +58,7 @@ export class Employees extends Model<Employees> {
 
     @HasMany( () => Service )
     service: Service[];
+
+    @HasMany( () => Records )
+    records: Records[];
 }
