@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import {DocumentBuilder, SwaggerModule} from "@nestjs/swagger";
-import {JwtAuthGuard} from "./auth/jwt-auth.guard";
+//import {JwtAuthGuard} from "./auth/jwt-auth.guard";
 
 async function bootstrap() {
   const PORT = process.env.PORT || 5000;
@@ -17,7 +17,7 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api/docs', app, document)
 
-  //Uncomment to limit access to unauthorized users
+  //Uncomment to limit access to unauthorized user
   // app.useGlobalGuards(JwtAuthGuard);
 
 
