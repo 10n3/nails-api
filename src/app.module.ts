@@ -25,6 +25,8 @@ import {Employees} from "./employees/employees.model";
 import { RecordsService } from './records/records.service';
 import { RecordsModule } from './records/records.module';
 import {Records} from "./records/records.model";
+import {ExceptionsLoggerFilter} from "./utils/exceptionsLogger.filter";
+import {APP_FILTER} from "@nestjs/core";
 //import { AuthModule } from './auth/auth.module';
 
 @Module({
@@ -66,6 +68,12 @@ import {Records} from "./records/records.model";
     RecordsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+      AppService,
+      {
+          provide: APP_FILTER,
+          useClass: ExceptionsLoggerFilter,
+      }
+  ],
 })
 export class AppModule {}
