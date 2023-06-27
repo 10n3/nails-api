@@ -1,7 +1,7 @@
 import {Module} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './user/users.module';
+import { UserModule } from './user/user.module';
 import {ConfigModule} from "@nestjs/config";
 import {User} from "./user/user.model";
 import {SequelizeModule} from "@nestjs/sequelize";
@@ -57,7 +57,7 @@ import {APP_FILTER} from "@nestjs/core";
       synchronize: true,
       autoLoadModels: true,
     }),
-    UsersModule,
+    UserModule,
     CompanyModule,
     UserRolesModule,
     ClientModule,
@@ -70,10 +70,6 @@ import {APP_FILTER} from "@nestjs/core";
   controllers: [AppController],
   providers: [
       AppService,
-      {
-          provide: APP_FILTER,
-          useClass: ExceptionsLoggerFilter,
-      }
   ],
 })
 export class AppModule {}

@@ -1,16 +1,16 @@
 import {Body, Controller, Delete, Get, Inject, Param, Post, Put, UseGuards} from '@nestjs/common';
 import {CreateUserDto} from "./dto/create-user.dto";
-import {UsersService} from "./users.service";
+import {UserService} from "./user.service";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {User} from "./user.model";
 import {SetRoleDto} from "../user-roles/dto/set-role.dto";
-import {SetCompanyDto} from "./dto/set-company.dto";
+import {SetCompanyToUserDto} from "./dto/set-company-to-user.dto";
 
 @ApiTags('User')
 @Controller('user')
 export class UserController {
 
-    constructor(private usersService: UsersService) {}
+    constructor(private usersService: UserService) {}
 
 
     @ApiOperation({ summary: 'User creation' })
@@ -46,7 +46,7 @@ export class UserController {
     @ApiOperation({ summary: 'Add user a company' })
     @ApiResponse({ status: 200, type: User })
     @Put('change-company')
-    async setCompany(@Body() dto: SetCompanyDto) {
+    async setCompany(@Body() dto: SetCompanyToUserDto) {
         return this.usersService.setCompany(dto);
     }
 
