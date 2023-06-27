@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
+import {Module} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
+import { UsersModule } from './user/users.module';
 import {ConfigModule} from "@nestjs/config";
-import {User} from "./users/users.model";
+import {User} from "./user/user.model";
 import {SequelizeModule} from "@nestjs/sequelize";
 import { CompanyModule } from './company/company.module';
 import {Company} from "./company/company.model";
@@ -25,6 +25,7 @@ import {Employees} from "./employees/employees.model";
 import { RecordsService } from './records/records.service';
 import { RecordsModule } from './records/records.module';
 import {Records} from "./records/records.model";
+//import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -57,7 +58,6 @@ import {Records} from "./records/records.model";
     UsersModule,
     CompanyModule,
     UserRolesModule,
-    AuthModule,
     ClientModule,
     ServiceCategoryModule,
     ServiceModule,
