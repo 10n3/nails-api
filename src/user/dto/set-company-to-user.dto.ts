@@ -1,6 +1,6 @@
 import {ApiProperty} from "@nestjs/swagger";
 
-export class SetCompanyDto {
+export class SetCompanyToUserDto {
 
     @ApiProperty({ example: 'example@gmail.com', description: 'User email' })
     readonly email: string;

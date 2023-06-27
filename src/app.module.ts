@@ -1,7 +1,7 @@
 import {Module} from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsersModule } from './user/users.module';
+import { UserModule } from './user/user.module';
 import {ConfigModule} from "@nestjs/config";
 import {User} from "./user/user.model";
 import {SequelizeModule} from "@nestjs/sequelize";
@@ -25,6 +25,8 @@ import {Employees} from "./employees/employees.model";
 import { RecordsService } from './records/records.service';
 import { RecordsModule } from './records/records.module';
 import {Records} from "./records/records.model";
+import {ExceptionsLoggerFilter} from "./utils/exceptionsLogger.filter";
+import {APP_FILTER} from "@nestjs/core";
 //import { AuthModule } from './auth/auth.module';
 
 @Module({
@@ -55,7 +57,7 @@ import {Records} from "./records/records.model";
       synchronize: true,
       autoLoadModels: true,
     }),
-    UsersModule,
+    UserModule,
     CompanyModule,
     UserRolesModule,
     ClientModule,
@@ -66,6 +68,8 @@ import {Records} from "./records/records.model";
     RecordsModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+      AppService,
+  ],
 })
 export class AppModule {}
