@@ -39,7 +39,7 @@ export class UserService {
         const user = await this.userRepository.findOne({ where: {email}, include: { all: true } });
 
         if (!user) {
-            throw new NotFoundException('User', email);
+            this.notFound('User', email);
         }
 
         return user;
@@ -48,13 +48,15 @@ export class UserService {
     async setRole(dto: SetRoleDto) {
         const user = await this.getUserByEmail(dto.email);
         if(!user) {
-            throw new NotFoundException('User', dto.email);
+            // throw new NotFoundException('User', dto.email);
+            this.notFound('User', dto.email);
         }
 
 
         const role = await this.userRolesService.getRoleByName(dto.role);
         if(!role) {
-            throw new NotFoundException('Role', dto.role);
+            // throw new NotFoundException('Role', dto.role);
+            this.notFound('Role', dto.role);
         }
 
         await user.$set('roles', [role.id]);
@@ -67,10 +69,16 @@ export class UserService {
     async setCompany(dto: SetCompanyToUserDto) {
 
         const user = await this.getUserByEmail(dto.email);
-        if(!user) { throw new NotFoundException('User', dto.email); }
+        if(!user) {
+            // throw new NotFoundException('User', dto.email);
+            this.notFound('User', dto.email);
+        }
 
         const company = await this.companyService.getCompanyByName(dto.companies);
-        if(!company) { throw new NotFoundException('Company', dto.companies); }
+        if(!company) {
+            // throw new NotFoundException('Company', dto.companies);
+            this.notFound('Company', dto.companies);
+        }
 
         await user.$set('companies', [company.id]);
         user.companies = [company];
@@ -80,12 +88,19 @@ export class UserService {
 
     async deleteUserByEmail( userEmail: string) {
         const user = await this.getUserByEmail(userEmail);
-        if(!user) { throw new NotFoundException('User', userEmail); }
+        if(!user) {
+            // throw new NotFoundException('User', userEmail);
+            this.notFound('User', userEmail);
+        }
 
         await this.userRepository.destroy( { where: { email: userEmail } });
 
         return user;
 
+    }
+
+    private notFound(item: string, prop: any) {
+        throw new NotFoundException(item, prop);
     }
 
 
