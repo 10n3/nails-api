@@ -7,7 +7,6 @@ import {UserRoles} from "../user-roles/user-roles.model";
 import {UserUserRoles} from "../user-roles/user-user-role.model";
 import {UserRolesModule} from "../user-roles/user-roles.module";
 import {CompanyModule} from "../company/company.module";
-import {AuthModule} from "../auth/auth.module";
 import {Client} from "../client/client.model";
 import {Company} from "../company/company.model";
 
@@ -16,7 +15,6 @@ import {Company} from "../company/company.model";
       SequelizeModule.forFeature([User, UserRoles, UserUserRoles, Client, Company]),
       UserRolesModule,
       CompanyModule,
-      //forwardRef(() => AuthModule),
   ],
   providers: [UserService],
   controllers: [UserController],

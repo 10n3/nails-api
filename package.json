@@ -29,6 +29,7 @@
     "@nestjs/sequelize": "^9.0.0",
     "@nestjs/swagger": "^6.0.3",
     "@nestjs/typeorm": "^9.0.0",
+    "@types/bcrypt": "^5.0.0",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "cross-env": "^7.0.3",

@@ -11,7 +11,6 @@ import { UserRolesModule } from './user-roles/user-roles.module';
 import {UserRoles} from "./user-roles/user-roles.model";
 import {UserUserRoles} from "./user-roles/user-user-role.model";
 import {UserCompany} from "./company/user-company.model";
-import { AuthModule } from './auth/auth.module';
 import { ClientModule } from './client/client.module';
 import {Client} from "./client/client.model";
 import { ServiceCategoryModule } from './service-category/service-category.module';
@@ -27,6 +26,7 @@ import { RecordsModule } from './records/records.module';
 import {Records} from "./records/records.model";
 import {ExceptionsLoggerFilter} from "./utils/exceptionsLogger.filter";
 import {APP_FILTER} from "@nestjs/core";
+import {AuthModule} from "./auth/auth.module";
 //import { AuthModule } from './auth/auth.module';
 
 @Module({
@@ -66,6 +66,7 @@ import {APP_FILTER} from "@nestjs/core";
     EmployeeCategoryModule,
     EmployeesModule,
     RecordsModule,
+      AuthModule
   ],
   controllers: [AppController],
   providers: [
