@@ -4,6 +4,7 @@ import {AuthService} from "./auth.service";
 import {CreateUserDto} from "../user/dto/create-user.dto";
 import {User} from "../user/user.model";
 import RequestWithUser from "./request-with-user.interface";
+import {AuthGuard} from "./auth.guard";
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -20,6 +21,7 @@ export class AuthController {
 
     @ApiOperation({ summary: 'Login' })
     @ApiResponse({ status: 200, type: User })
+    @UseGuards(AuthGuard)
     @HttpCode(200)
     @Post('sign-in')
     async signIn(@Req() request: RequestWithUser, @Body() dto: CreateUserDto) {
