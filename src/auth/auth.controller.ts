@@ -1,8 +1,9 @@
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
-import {Body, Controller, Post} from "@nestjs/common";
+import {Body, Controller, HttpCode, Post, Req, UseGuards} from "@nestjs/common";
 import {AuthService} from "./auth.service";
 import {CreateUserDto} from "../user/dto/create-user.dto";
 import {User} from "../user/user.model";
+import RequestWithUser from "./request-with-user.interface";
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -19,8 +20,9 @@ export class AuthController {
 
     @ApiOperation({ summary: 'Login' })
     @ApiResponse({ status: 200, type: User })
+    @HttpCode(200)
     @Post('sign-in')
-    async signIn(@Body() dto: CreateUserDto) {
+    async signIn(@Req() request: RequestWithUser, @Body() dto: CreateUserDto) {
         return await this.authService.signIn(dto);
     }
 

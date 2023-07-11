@@ -2,11 +2,13 @@ import {HttpException, HttpStatus, Injectable, UnauthorizedException} from '@nes
 import {UserService} from "../user/user.service";
 import {CreateUserDto} from "../user/dto/create-user.dto";
 import * as bcrypt from 'bcrypt';
+import {JwtService} from "@nestjs/jwt";
 
 @Injectable()
 export class AuthService {
 
-    constructor(private userService: UserService) {}
+    constructor(private userService: UserService,
+                private jwtService: JwtService) {}
 
     async signUp(dto: CreateUserDto) {
 
@@ -36,7 +38,11 @@ export class AuthService {
 
         await this.verifyPassword(dto.password, existUser.password);
         existUser.password = undefined;
-        return existUser;
+
+        const payload = { id: existUser.id, email: existUser.email };
+        return {
+            access_token: await this.jwtService.signAsync(payload),
+        }
 
     }
 
