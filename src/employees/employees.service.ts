@@ -17,10 +17,9 @@ export class EmployeesService {
     }
 
     async getEmployeeByName(name: string) {
-        const employee = await this.employeesRepository.findOne({ where: {name} });
-        if(!employee) { throw new HttpException('Employee with this name NOT FOUND', HttpStatus.NOT_FOUND); }
+     
+        return await this.employeesRepository.findOne({ where: { name }, include: { all: true } });
 
-        return employee;
     }
 }
 

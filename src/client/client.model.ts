@@ -40,7 +40,7 @@ export class Client extends Model<Client> {
 
     @ApiProperty({ example: '15', description: 'Id of company that client is belong to', required: false })
     @ForeignKey( () => Company )
-    @Column( { type: DataType.NUMBER, allowNull: true})
+    @Column( { type: DataType.INTEGER, allowNull: true})
     companyid: number;
 
     @BelongsTo( () => Company)

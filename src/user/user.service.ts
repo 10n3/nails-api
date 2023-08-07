@@ -39,7 +39,8 @@ export class UserService {
         const user = await this.userRepository.findOne({ where: {email}, include: { all: true } });
 
         if (!user) {
-            this.notFound('User', email);
+            const notFoundUser = <User>{};
+            return notFoundUser;
         }
 
         return user;
@@ -48,7 +49,7 @@ export class UserService {
     async setRole(dto: SetRoleDto) {
         const user = await this.getUserByEmail(dto.email);
         if(!user) {
-            // throw new NotFoundException('User', dto.email);
+   ``         // throw new NotFoundException('User', dto.email);
             this.notFound('User', dto.email);
         }
 
