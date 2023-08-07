@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpCode, Param, Post, Put} from '@nestjs/common';
 import {CreateClientDto} from "./dto/create-client.dto";
 import {ClientService} from "./client.service";
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
@@ -26,9 +26,31 @@ export class ClientController {
 
     @ApiOperation({ summary: 'Get client by name' })
     @ApiResponse({status: 200, type: Client})
-    @Get('/:name')
+    @Get('by-name/:name')
     async getClientByName(@Param('name') name : string) {
         return await this.clientService.getClientByName(name);
     }
 
+    @ApiOperation({ summary: 'Get client by tel. number' })
+    @ApiResponse({status: 200, type: Client})
+    @Get('by-number/:tel_number')
+    async getClientByTelNumber(@Param('tel_number') tel_number : string) {
+        return await this.clientService.getClientByTelNumber(tel_number);
+    }
+
+    @ApiOperation({ summary: 'Update client by tel.number' })
+    @ApiResponse({status: 202, type: Boolean})
+    @HttpCode(202)
+    @Put()
+    async updateClientByTelNumber(@Body() dto : CreateClientDto) {
+        return await this.clientService.updateClientByTelNumber(dto);
+    }
+
+
+    @ApiOperation({ summary: 'Delete client by tel. number' })
+    @ApiResponse({status: 202, type: Client})
+    @Delete('/:tel_number')
+    async deleteClientByTelNumber(@Param('tel_number') tel_number : string) {
+        return await this.clientService.deleteClientByTelNumber(tel_number);
+    }
 }

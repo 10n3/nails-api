@@ -42,7 +42,7 @@ export class Employees extends Model<Employees> {
 
     @ApiProperty({ example: '15', description: 'Id of company that client is belong to', required: false })
     @ForeignKey( () => Company )
-    @Column( { type: DataType.NUMBER, allowNull: true})
+    @Column( { type: DataType.INTEGER, allowNull: true})
     companyid: number;
 
     @BelongsTo( () => Company)
@@ -50,7 +50,7 @@ export class Employees extends Model<Employees> {
 
     @ApiProperty({ example: '12', description: 'Id of employee category', required: false })
     @ForeignKey( () => EmployeeCategory )
-    @Column( { type: DataType.NUMBER, allowNull: true})
+    @Column( { type: DataType.INTEGER, allowNull: true})
     employee_category_id: number;
 
     @BelongsTo( () => EmployeeCategory)
