@@ -1,8 +1,10 @@
-import {Body, Controller, Get, Param, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpCode, Param, Post, Put} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {ServiceCategoryService} from "./service-category.service";
 import {ServiceCategory} from "./service-category.model";
 import {CreateServiceCategoryDto} from "./dto/create-service-category.dto";
+import {CreateUserRoleDto} from "../user-roles/dto/create-user-role.dto";
+import {UserRoles} from "../user-roles/user-roles.model";
 
 @ApiTags('Service category')
 @Controller('service-category')
@@ -31,7 +33,20 @@ export class ServiceCategoryController {
         return this.serviceCategoryService.getServiceCategoryByName(name);
     }
 
+    @ApiOperation({ summary: 'Update category by name' })
+    @ApiResponse({status: 202, type: Boolean})
+    @HttpCode(202)
+    @Put()
+    async updateClientByTelNumber(@Body() dto : CreateUserRoleDto) {
+        return await this.serviceCategoryService.updateServiceCategoryByName(dto);
+    }
 
+    @ApiOperation({ summary: 'Delete category by name' })
+    @ApiResponse({status: 202, type: ServiceCategory})
+    @Delete('/:name')
+    async deleteClientByTelNumber(@Param('name') name : string) {
+        return await this.serviceCategoryService.deleteUserRoleByName(name);
+    }
 
 
 }
