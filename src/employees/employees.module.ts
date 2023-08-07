@@ -13,6 +13,10 @@ import {Records} from "../records/records.model";
 
   ],
 
+  exports: [
+      EmployeesService,
+  ],
+
   controllers: [EmployeesController],
   providers: [EmployeesService],
 

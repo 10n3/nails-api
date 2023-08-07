@@ -15,5 +15,9 @@ export class EmployeesService {
     async getAll() {
         return await this.employeesRepository.findAll({include: {all: true}});
     }
+
+    async getEmployeeByName(name: string) {
+        return await this.employeesRepository.findOne({ where: { name }, include: { all: true } });
+    }
 }
 
