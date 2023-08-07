@@ -27,7 +27,7 @@ export class Records extends Model<Records> {
     @ApiProperty({ example: '15', description: 'Id of company that record is belong to', required: false })
     @ForeignKey( () => Company )
     @Column( { type: DataType.INTEGER, allowNull: true})
-    company_id: number;
+    company_id: Company[];
 
     @BelongsTo( () => Company)
     company: Company;
@@ -35,7 +35,7 @@ export class Records extends Model<Records> {
     @ApiProperty({ example: '15', description: 'Id of employee that record is belong to', required: false })
     @ForeignKey( () => Employees )
     @Column( { type: DataType.INTEGER, allowNull: true})
-    employee_id: number;
+    employee_id: any[];
 
     @BelongsTo( () => Employees)
     employee: Employees;
@@ -52,6 +52,8 @@ export class Records extends Model<Records> {
     @ForeignKey( () => Client )
     @Column( { type: DataType.INTEGER, allowNull: true})
     client_id: number;
+
+
 
     @BelongsTo( () => Client)
     client: Client;
