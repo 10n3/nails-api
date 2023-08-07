@@ -32,7 +32,7 @@ export class Service extends Model<Service> {
 
     @ApiProperty({ example: 'Service category', description: 'Service category that service belongs to', required: false })
     @ForeignKey( () => ServiceCategory )
-    @Column( { type: DataType.NUMBER, allowNull: true})
+    @Column( { type: DataType.INTEGER, allowNull: true})
     service_category_id: number;
 
     @BelongsTo( () => ServiceCategory )
@@ -40,7 +40,7 @@ export class Service extends Model<Service> {
 
     @ApiProperty({ example: 'Kaif Beauty', description: 'Company that service belongs to', required: false })
     @ForeignKey( () => Company )
-    @Column( { type: DataType.NUMBER, allowNull: true})
+    @Column( { type: DataType.INTEGER, allowNull: true})
     company_id: number;
 
     @BelongsTo( () => Company )
@@ -48,7 +48,7 @@ export class Service extends Model<Service> {
 
     @ApiProperty({ example: '23', description: 'Employee that service belongs to', required: false })
     @ForeignKey( () => Employees )
-    @Column( { type: DataType.NUMBER, allowNull: true})
+    @Column( { type: DataType.INTEGER, allowNull: true})
     employees_id: number;
 
     @BelongsTo( () => Employees )

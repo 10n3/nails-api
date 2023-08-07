@@ -1,6 +1,6 @@
 import {BelongsToMany, Column, DataType, HasMany, Model, Table} from "sequelize-typescript";
 import {ApiProperty} from "@nestjs/swagger";
-import {User} from "../users/users.model";
+import {User} from "../user/user.model";
 import {UserCompany} from "./user-company.model";
 import {Client} from "../client/client.model";
 import {ServiceCategory} from "../service-category/service-category.model";

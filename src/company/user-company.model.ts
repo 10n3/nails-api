@@ -1,5 +1,5 @@
 import { Column, DataType, ForeignKey, Model, Table} from "sequelize-typescript";
-import {User} from "../users/users.model";
+import {User} from "../user/user.model";
 import {Company} from "./company.model";
 
 

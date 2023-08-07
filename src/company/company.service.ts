@@ -1,11 +1,9 @@
-import {HttpException, Injectable} from '@nestjs/common';
+import {HttpCode, HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {InjectModel} from "@nestjs/sequelize";
 import {Company} from "./company.model";
 import {CreateCompanyDto} from "./dto/create-company.dto";
 import {AddServiceCategoryDto} from "./dto/add-service-category.dto";
-import {InjectRepository} from "@nestjs/typeorm";
 import {ServiceCategoryService} from "../service-category/service-category.service";
-import {ExceptionHandler} from "@nestjs/core/errors/exception-handler";
 
 @Injectable()
 export class CompanyService {
@@ -14,7 +12,10 @@ export class CompanyService {
                                       private serviceCategoryService: ServiceCategoryService) {}
 
     async createCompany(dto: CreateCompanyDto) {
-        return await this.companyRepository.create(dto);
+        const newCompany =  await this.companyRepository.create(dto);
+
+        return newCompany;
+
     }
 
     async getAllCompanies(){
@@ -22,20 +23,43 @@ export class CompanyService {
     }
 
     async getCompanyByName(name: string){
-        return await this.companyRepository.findOne( { where: { name } });
-    }
-
-    async addServiceCategory(dto: AddServiceCategoryDto) {
-        const company = await this.getCompanyByName(dto.companyName);
-        if (!company) {
-            throw new HttpException(dto.companyName, 404);
-        }
-        const serviceCategory = await this.serviceCategoryService.getServiceCategoryByName(dto.serviceCategoryName);
-
-        await company.$set('servicecategories', serviceCategory);
-
-        company.servicecategories = [serviceCategory];
+        const company = await this.companyRepository.findOne( { where: { name: name } });
+        if(!company) { throw new HttpException('Company NOT FOUND', HttpStatus.NOT_FOUND); }
 
         return company;
     }
+
+    async updateCompanyByName(name: string, companyData: CreateCompanyDto) {
+        const company = await this.getCompanyByName(name);
+
+        if(!company) {
+            throw new HttpException('Company not found', HttpStatus.NOT_FOUND);
+        }
+
+        return await this.companyRepository.update( { ...company, ...companyData }, { where: {name:name} })
+    }
+
+    async deleteCompanyByName( companyName: string ) {
+
+        const company = await this.getCompanyByName(companyName);
+        if(!company) { throw new HttpException('Company with this name NOT FOUND', HttpStatus.NOT_FOUND); }
+
+        await this.companyRepository.destroy( { where: { name: companyName } } );
+
+        return company;
+    }
+
+    // async addServiceCategory(dto: AddServiceCategoryDto) {
+    //     const company = await this.getCompanyByName(dto.companyName);
+    //     if (!company) {
+    //         throw new HttpException(dto.companyName, 404);
+    //     }
+    //     const serviceCategory = await this.serviceCategoryService.getServiceCategoryByName(dto.serviceCategoryName);
+    //
+    //     await company.$set('servicecategories', serviceCategory);
+    //
+    //     company.servicecategories = [serviceCategory];
+    //
+    //     return company;
+    // }
 }
