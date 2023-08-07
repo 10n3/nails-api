@@ -1,5 +1,5 @@
 import {InjectModel} from "@nestjs/sequelize";
-import {Injectable} from "@nestjs/common";
+import {HttpException, HttpStatus, Injectable} from "@nestjs/common";
 import {Employees} from "./employees.model";
 import {CreateEmployeeDto} from "./dto/create-employee.dto";
 
@@ -17,7 +17,9 @@ export class EmployeesService {
     }
 
     async getEmployeeByName(name: string) {
+     
         return await this.employeesRepository.findOne({ where: { name }, include: { all: true } });
+
     }
 }
 

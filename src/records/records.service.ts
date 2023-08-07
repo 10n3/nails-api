@@ -1,4 +1,4 @@
-import {Injectable} from '@nestjs/common';
+import {HttpException, HttpStatus, Injectable} from '@nestjs/common';
 import {InjectModel} from "@nestjs/sequelize";
 import {Records} from "./records.model";
 import {CreateRecordDto} from "./dto/create-record.dto";
@@ -6,8 +6,6 @@ import {SetCompanyDto} from "./dto/set-company.dto";
 import {CompanyService} from "../company/company.service";
 import {SetEmployeeDto} from "./dto/set-employee.dto";
 import {EmployeesService} from "../employees/employees.service";
-import {GetPeriodDto} from "./dto/get-period.dto";
-import sequelize, {Op} from "sequelize";
 import {Service} from "../service/service.model";
 
 @Injectable()
@@ -29,6 +27,7 @@ export class RecordsService {
     async getRecordByID (id: number) {
         const record = await this.recordsRepository.findOne({ where: {id}, include: { all: true } });
 
+        if(!record) { throw new HttpException('Record with this ID NOT FOUND', HttpStatus.NOT_FOUND); }
         return record;
     }
 
