@@ -7,6 +7,7 @@ import {CompanyService} from "../company/company.service";
 import {SetEmployeeDto} from "./dto/set-employee.dto";
 import {EmployeesService} from "../employees/employees.service";
 import {Service} from "../service/service.model";
+import {CreateUserRoleDto} from "../user-roles/dto/create-user-role.dto";
 
 @Injectable()
 export class RecordsService {
@@ -59,6 +60,22 @@ export class RecordsService {
         catch(e) {
             return {e}
         }
+    }
+
+    async updateRecordByID(id: number, dto: CreateRecordDto) {
+        const record = await this.getRecordByID(id);
+
+        if(!record) { throw new HttpException('Record with this id NOT FOUND', HttpStatus.NOT_FOUND); }
+
+        return await this.recordsRepository.update( { ...dto, ...record },  { where: { id: id } });
+    }
+
+    async deleteRecordByID(id: number) {
+        const record = await this.getRecordByID(id);
+        if(!record) { throw new HttpException('Record with this ID NOT FOUND', HttpStatus.NOT_FOUND); }
+
+        await this.recordsRepository.destroy({ where: {id} });
+        return record;
     }
 
     // async getRecordByPeriod(dto: GetPeriodDto) {

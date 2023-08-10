@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post, Put} from '@nestjs/common';
+import {Body, Controller, Delete, Get, HttpCode, Param, Post, Put} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {Employees} from "../employees/employees.model";
 import {Records} from "./records.model";
@@ -8,6 +8,8 @@ import {Company} from "../company/company.model";
 import {SetCompanyDto} from "./dto/set-company.dto";
 import {SetEmployeeDto} from "./dto/set-employee.dto";
 import {GetPeriodDto} from "./dto/get-period.dto";
+import {UserRoles} from "../user-roles/user-roles.model";
+import {CreateUserRoleDto} from "../user-roles/dto/create-user-role.dto";
 
 @ApiTags('Records')
 @Controller('records')
@@ -26,6 +28,28 @@ export class RecordsController {
     @Get()
     async getAll() {
         return this.recordsService.getAll();
+    }
+
+    @ApiOperation({ summary: 'Get record by id' })
+    @ApiResponse({ status: 200, type: Records })
+    @Get('/:id')
+    async getRecordByID( @Param('id') id : number ) {
+        return this.recordsService.getRecordByID(id);
+    }
+
+    @ApiOperation({ summary: 'Update record by ID' })
+    @ApiResponse({status: 202, type: Boolean})
+    @HttpCode(202)
+    @Put('/:id')
+    async updateRoleByName(@Param('id') id: number, @Body() dto : CreateRecordDto) {
+        return await this.recordsService.updateRecordByID(id, dto);
+    }
+
+    @ApiOperation({ summary: 'Delete record by ID' })
+    @ApiResponse({status: 202, type: Records})
+    @Delete('/:id')
+    async deleteRecordByID(@Param('id') id : number) {
+        return await this.recordsService.deleteRecordByID(id);
     }
 
     // @ApiOperation({ summary: 'Get record between 2 dates' })
