@@ -1,4 +1,4 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Post, Put} from '@nestjs/common';
 import {ApiOperation, ApiResponse, ApiTags} from "@nestjs/swagger";
 import {EmployeeCategoryService} from "./employee-category.service";
 import {EmployeeCategory} from "./employee-category.model";
@@ -22,4 +22,26 @@ export class EmployeeCategoryController {
     async getAll() {
         return this.employeeCategoryService.getAll();
     }
+
+    @ApiOperation({ summary: 'Get employee category by name' })
+    @ApiResponse({ status: 200, type: EmployeeCategory })
+    @Get('/:name')
+    async getEmployeeCategoryByName(@Param('name') name: string) {
+        return this.employeeCategoryService.getEmployeeByName(name);
+    }
+
+    @ApiOperation({ summary: 'Update employee category by name' })
+    @ApiResponse({ status: 202, type: Boolean })
+    @Put()
+    async updateEmployeeCategoryByName(@Body() dto: CreateEmployeeCategoryDto) {
+        return this.employeeCategoryService.updateEmployeeByName(dto);
+    }
+
+    @ApiOperation({ summary: 'Delete employee category by name' })
+    @ApiResponse({ status: 202, type: EmployeeCategory })
+    @Delete('/:name')
+    async deleteEmployeeCategoryByName(@Param('name') name: string) {
+        return this.employeeCategoryService.deleteEmployeeByName(name);
+    }
+
 }

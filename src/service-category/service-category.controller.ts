@@ -4,7 +4,6 @@ import {ServiceCategoryService} from "./service-category.service";
 import {ServiceCategory} from "./service-category.model";
 import {CreateServiceCategoryDto} from "./dto/create-service-category.dto";
 import {CreateUserRoleDto} from "../user-roles/dto/create-user-role.dto";
-import {UserRoles} from "../user-roles/user-roles.model";
 
 @ApiTags('Service category')
 @Controller('service-category')
